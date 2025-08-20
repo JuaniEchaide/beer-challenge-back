@@ -1,20 +1,21 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductEntity } from 'src/modules/products/infrastructure/entities/product.entity';
+import { ProductsService } from 'src/modules/products/application/products.service';
+import { ProductRepository } from 'src/modules/products/domain/repositories/product.repository';
+import { ProductRepositoryImpl } from 'src/modules/products/infrastructure/repositories/product.repository.impl';
 import { ProductsModule } from 'src/modules/products/products.module';
-import { StockEntity } from 'src/modules/stock/infrastructure/entities/stock.entity';
-import { StockModule } from 'src/modules/stock/stock.module';
+
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      entities: [ProductEntity, StockEntity],
-      synchronize: true,
-    }),
     ProductsModule,
-    StockModule,
+    ProductsModule,
+  ],
+  providers: [
+    ProductsService,
+    {
+      provide: ProductRepository,
+      useClass: ProductRepositoryImpl,
+    },
   ],
 })
 export class AppModule { }
