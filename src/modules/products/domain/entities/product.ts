@@ -1,5 +1,3 @@
-import { Sku } from "src/modules/shared/domain/entities/Sku";
-
 export class Product {
     id: number;
     brand: string;
@@ -9,5 +7,10 @@ export class Product {
     abv: string;
     origin: string;
     information: string;
-    skus: Sku[];
+    skus: Sku[]
+}
+
+export class Sku {
+    code: string;
+    name: string
 }

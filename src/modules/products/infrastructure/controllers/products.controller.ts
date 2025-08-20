@@ -7,11 +7,8 @@ export class ProductsController {
 
     @Get()
     getAll() {
-        return this.service.findAll();
+        const availableProducts = this.service.findAll();
+        return availableProducts;
     }
 
-    @Get(':id')
-    getOne(@Param('id') id: string) {
-        return this.service.findById(Number(id));
-    }
 }
