@@ -19,3 +19,5 @@ import { StockModule } from './modules/stock/stock.module';
   ],
 })
 export class AppModule { }
+
+//TODO revisar seed
